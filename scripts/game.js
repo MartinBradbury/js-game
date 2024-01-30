@@ -8,6 +8,7 @@ let game = {
 function newGame() {
     game.score = 0;
     game.playerMoves = 0;
+    game.currentGame = 0;
 };
 
 
