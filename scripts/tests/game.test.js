@@ -24,4 +24,7 @@ describe("game object contains correct keys", () => {
     test("player moves key exists", () => {
         expect("playerMoves" in game).toBe(true);
     });
+    test("player choices key exists", () => {
+        expect("playerChoice" in game).toBe(true);
+    });
 });
