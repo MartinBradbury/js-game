@@ -5,5 +5,9 @@ let game = {
     score: 0,
 };
 
+function newGame() {
+    game.score = 0;
+};
 
-module.exports = { game };
+
+module.exports = { game, newGame };
