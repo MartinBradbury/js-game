@@ -2,13 +2,7 @@
  * @jest-environment jsdom
  */
 
-
-
-const { game, newGame, showScore } = require("../game");
-
-
-
-
+const { game, newGame, showScore, addTurn } = require("../game");
 
 beforeAll(() => {
     let fs = require("fs");
@@ -25,13 +19,13 @@ describe("game object contains correct keys", () => {
     test("currentGame key exists", () => {
         expect("currentGame" in game).toBe(true);
     });
-    test("player moves key exists", () => {
+    test("playerMoves key exists", () => {
         expect("playerMoves" in game).toBe(true);
     });
-    test("player choices key exists", () => {
+    test("choices key exists", () => {
         expect("choices" in game).toBe(true);
     });
-    test("buttons contain the correct ids", () => {
+    test("choices contain correct ids", () => {
         expect(game.choices).toEqual(["button1", "button2", "button3", "button4"]);
     });
 });
@@ -47,13 +41,13 @@ describe("newGame works correctly", () => {
     test("should set game score to zero", () => {
         expect(game.score).toEqual(0);
     });
-    test("should set player moves to zero", () => {
-        expect(game.playerMoves.length).toBe(0);
-    });
-    test("should set current game to zero", () => {
-        expect(game.currentGame.length).toBe(0);
-    });
     test("should display 0 for the element with id of score", () => {
         expect(document.getElementById("score").innerText).toEqual(0);
-    })
-})
+    });
+    test("should clear the player moves array", () => {
+        expect(game.playerMoves.length).toBe(0);
+    });
+    test("should add one move to the computer's game array", () => {
+        expect(game.currentGame.length).toBe(1);
+    });
+});
