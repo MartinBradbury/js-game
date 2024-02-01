@@ -4,6 +4,7 @@
 
 const { game, newGame, showScore, addTurn } = require("../game");
 
+
 beforeAll(() => {
     let fs = require("fs");
     let fileContents = fs.readFileSync("index.html", "utf-8");
@@ -49,5 +50,23 @@ describe("newGame works correctly", () => {
     });
     test("should add one move to the computer's game array", () => {
         expect(game.currentGame.length).toBe(1);
+    });
+});
+
+describe("Gameplay works correctly", () => {
+    beforeEach(() => {
+        score.game = 0;
+        game.currentGame = [];
+        game.playerMoves = [];
+        addTurn();
+    });
+    afterEach(() => {
+        score.game = 0;
+        game.currentGame = [];
+        game.playerMoves = [];
+    });
+    test("add turn adds a new turn", () => {
+        addTurn();
+        expect(game.currentGame.length).toBe(2);
     });
 });
