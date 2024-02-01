@@ -2,8 +2,7 @@
  * @jest-environment jsdom
  */
 
-const { game, newGame, showScore, addTurn } = require("../game");
-
+const { game, newGame, showScore, addTurn, lightsOn } = require("../game");
 
 beforeAll(() => {
     let fs = require("fs");
@@ -53,20 +52,25 @@ describe("newGame works correctly", () => {
     });
 });
 
-describe("Gameplay works correctly", () => {
+describe("gameplay works correctly", () => {
     beforeEach(() => {
-        score.game = 0;
+        game.score = 0;
         game.currentGame = [];
         game.playerMoves = [];
         addTurn();
     });
     afterEach(() => {
-        score.game = 0;
+        game.score = 0;
         game.currentGame = [];
         game.playerMoves = [];
     });
-    test("add turn adds a new turn", () => {
+    test("addTurn adds a new turn to the game", () => {
         addTurn();
         expect(game.currentGame.length).toBe(2);
+    });
+    test("should add correct class to light up the buttons", () => {
+        let button = document.getElementById(game.currentGame[0]);
+        lightsOn(game.currentGame[0]);
+        expect(button.classList).toContain(game.currentGame[0] + "light");
     });
 });
